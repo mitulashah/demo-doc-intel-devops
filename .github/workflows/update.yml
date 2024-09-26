@@ -33,9 +33,9 @@ jobs:
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
   
-      - name: Azure CLI script
+      - name: Perform Name Value Update
         uses: azure/cli@v2
         with:
           azcliversion: latest
           inlineScript: |
-            az apim nv update --service-name apim-demo-aigateway -g rg-demo-aigateway --named-value-id doc-intel-model-id --value ${{inputs.modelid}}
+            az apim nv update --service-name ${{ env.APIM_NAME }} -g ${{ env.APIM_RG }} --named-value-id ${{ env.APIM_NV_ID }} --value ${{ inputs.modelid }}
