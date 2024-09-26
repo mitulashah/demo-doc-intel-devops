@@ -38,4 +38,4 @@ jobs:
         with:
           azcliversion: latest
           inlineScript: |
-            az apim nv update --service-name ${{ env.APIM_NAME }} -g ${{ env.APIM_RG }} --named-value-id ${{ env.APIM_NV_ID }} --value ${{ inputs.modelid }}
+            az apim nv update --service-name ${{ vars.APIM_NAME }} -g ${{ vars.APIM_RG }} --named-value-id ${{ vars.APIM_NV_ID }} --value ${{ inputs.modelid }}
