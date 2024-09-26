@@ -38,5 +38,4 @@ jobs:
         with:
           azcliversion: latest
           inlineScript: |
-            az account show
-            # You can write your Azure CLI inline scripts here.
+            az apim nv update --service-name apim-demo-aigateway -g rg-demo-aigateway --named-value-id doc-intel-model-id --value ${{inputs.modelid}}
