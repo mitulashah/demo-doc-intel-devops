@@ -44,9 +44,6 @@ This repo houses a quick demonstration for mediating Azure Document Intelligence
     <!-- Handle exceptions and customize error responses  -->
     <on-error>
         <base />
-        <set-header name="x-modelid" exists-action="override">
-            <value>@(context.Operation.UrlTemplate)</value>
-        </set-header>
     </on-error>
 </policies>
 
