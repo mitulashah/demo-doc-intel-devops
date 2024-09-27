@@ -10,10 +10,10 @@ This repo houses a quick demonstration for mediating Azure Document Intelligence
 4. In the Frontend configuration screen, modify the URL to remove the parameter "{modelId}" and replace it with the word "model".  Delete the parameter "modelId" from the Template parameters tab below.
 5. Before moving on, we're going to create 2 [named values](https://learn.microsoft.com/en-us/azure/api-management/api-management-howto-properties?tabs=azure-portal) to hold some configuration.  Navigate to the Named Values section of the APIM control plane.
 6. Create 2 named values, one to hold your API key and one to hold the model ID.  Name them however you like, but remember the name for future use.
-7. Go back to the API operation and now click on the HTML icon </> under Inbound processing.  We need to add policies to add in a model to replace the parameter we removed.
+7. Go back to the API operation and now click on the HTML icon ```</>``` under Inbound processing.  We need to add policies to add in a model to replace the parameter we removed.
 8. We will add 2 policies:
-    1. A [rewrite-uri](https://learn.microsoft.com/en-us/azure/api-management/rewrite-uri-policy) policy to substitute our model id value
-    2. A [set-header](https://learn.microsoft.com/en-us/azure/api-management/set-header-policy) policy to make sure our request to the backend has the correct API key included
+    1. A [```rewrite-uri```](https://learn.microsoft.com/en-us/azure/api-management/rewrite-uri-policy) policy to substitute our model id value
+    2. A [```set-header```](https://learn.microsoft.com/en-us/azure/api-management/set-header-policy) policy to make sure our request to the backend has the correct API key included
 9.  Your policy document should look like this (replace the values in curly braces{{}} with the appropriate names you gave in step 6):
 
 ```xml
@@ -52,7 +52,7 @@ This repo houses a quick demonstration for mediating Azure Document Intelligence
 
 ```
 10. Once this is complete, the APIM instance is ready to receive configured model IDs from CI/CD.
-11. To update the model ID configured in APIM, all we need to do is update the named value we created.  To do this, we call an [Azure CLI command](https://learn.microsoft.com/en-us/cli/azure/apim/nv?view=azure-cli-latest): az apim nv update --service-name yourapimname -g yourresourcegroup --named-value-id yournamedvalue -value yournewmodelid.  This can be inserted into any pipeline where it makes sense to make this change.  It could be during model creation or after as a secondary step.
+11. To update the model ID configured in APIM, all we need to do is update the named value we created.  To do this, we call an [Azure CLI command](https://learn.microsoft.com/en-us/cli/azure/apim/nv?view=azure-cli-latest): ```az apim nv update --service-name yourapimname -g yourresourcegroup --named-value-id yournamedvalue -value yournewmodelid```.  This can be inserted into any pipeline where it makes sense to make this change.  It could be during model creation or after as a secondary step.
 12. An [example GitHub Action](https://github.com/mitulashah/demo-doc-intel-devops/blob/main/.github/workflows/update.yml) with the required configuration can be found in this repository.
 
 ## Caveats
